@@ -28,6 +28,7 @@ HTML/CSS/JS – frontend interface
 Nano / VS Code – text editors used during development
 
 🧠 How It Works
+
 When a user visits the app, they're prompted for their name
 The frontend establishes a WebSocket connection with the backend
 Socket.IO handles:
