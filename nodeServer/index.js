@@ -8,7 +8,11 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 // ✅ Serve static files from the correct public path
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+});
+
 
 // ✅ Route for root path
 app.get('/', (req, res) => {
