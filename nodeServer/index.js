@@ -7,8 +7,15 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
+// ✅ Serve static files from the correct public path
 app.use(express.static(path.join(__dirname, 'public')));
 
+// ✅ Route for root path
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// ✅ Socket.IO chat logic
 const users = {};
 
 io.on('connection', socket => {
@@ -32,6 +39,8 @@ io.on('connection', socket => {
   });
 });
 
-server.listen(8000, () => {
-  console.log('Server running at http://localhost:8000');
+// ✅ Listen on Render's assigned port or fallback
+const PORT = process.env.PORT || 8000;
+server.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
